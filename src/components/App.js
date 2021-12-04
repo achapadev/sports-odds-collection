@@ -21,7 +21,11 @@ function App() {
     const getOdds = async () => {
       const result = await fetchOdds(activeSport)
       if (result.success) {
-        setOdds({ ...odds, soccer_epl: result.data })
+        if (activeSport === "soccer_epl") {
+          setOdds({ ...odds, soccer_epl: result.data })
+        } else if (activeSport === "americanfootball_nfl") {
+          setOdds({ ...odds, americanfootball_nfl: result.data })
+        }
       }
       if (result.error) {
         setError(true)
@@ -29,7 +33,7 @@ function App() {
       }
     }
     getOdds()
-  }, [])
+  }, [activeSport])
   if (!odds) {
     return null
   }
@@ -38,7 +42,6 @@ function App() {
     setActiveGame(game)
     setModalShow(true)
   }
-  console.log(odds, "::odds")
   return (
     <>
       <Navbar bg="dark" variant="dark" className="mb-2">
