@@ -31,10 +31,12 @@ export function SportsCard(props) {
             />
             {team1}: {calculateOdds(sportsGame.sites[0].odds.h2h[0])}
           </Card.Text>
-          <Card.Text>
-            <PatchMinus className="sports-card__draw" size={25} />
-            Draw: {calculateOdds(sportsGame.sites[0].odds.h2h[2])}
-          </Card.Text>
+          {sportsGame.sites[0].odds.h2h[2] && (
+            <Card.Text>
+              <PatchMinus className="sports-card__draw" size={25} />
+              Draw: {calculateOdds(sportsGame.sites[0].odds.h2h[2])}
+            </Card.Text>
+          )}
           <Card.Text>
             <Image
               className="sports-card__image"

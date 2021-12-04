@@ -4,6 +4,7 @@ import { filterTeam, calculateOdds } from "../utils/index"
 import { icons } from "../constant"
 import Image from "react-bootstrap/Image"
 import Table from "react-bootstrap/Table"
+import "../stylesheets/OddsModal.scss"
 
 export function OddsModal(props) {
   const { activeGame } = props
@@ -49,7 +50,7 @@ export function OddsModal(props) {
             <tr>
               <th>Sportsbook</th>
               <th>{team1}</th>
-              <th>Draw</th>
+              {activeGame.sites[0].odds.h2h[2] && <th>Draw</th>}
               <th>{team2}</th>
             </tr>
           </thead>
@@ -59,7 +60,9 @@ export function OddsModal(props) {
                 <tr key={site.site_key}>
                   <td>{site.site_nice}</td>
                   <td>{calculateOdds(site.odds.h2h[0])}</td>
-                  <td>{calculateOdds(site.odds.h2h[2])}</td>
+                  {activeGame.sites[0].odds.h2h[2] && (
+                    <td>{calculateOdds(site.odds.h2h[2])}</td>
+                  )}
                   <td>{calculateOdds(site.odds.h2h[1])}</td>
                 </tr>
               )
