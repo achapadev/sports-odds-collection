@@ -92,7 +92,10 @@ function App() {
                     )
                   })
                 ) : (
-                  <div> No sports yet </div>
+                  <div className="loadText">
+                    Loading...
+                    <div className="loader"></div>
+                  </div>
                 )}
               </Row>
             )}
